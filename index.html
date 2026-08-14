@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haniya Fahim — Frontend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0F0E;
+    --surface: #141614;
+    --border: rgba(255,255,255,0.07);
+    --sand: #F0EBE0;
+    --sand-dim: #8C8880;
+    --accent: #C8F97A;
+    --accent-dim: rgba(200,249,122,0.12);
+    --accent-border: rgba(200,249,122,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--sand);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 48px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ---- header ---- */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--sand);
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .tagline {
+    color: var(--sand-dim);
+    font-size: 0.92rem;
+    max-width: 480px;
+    line-height: 1.65;
+  }
+
+  .contact-block {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--sand-dim);
+    line-height: 2;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-block a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ---- layout ---- */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 40px;
+  }
+
+  /* ---- section ---- */
+  .section { margin-bottom: 32px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent-border);
+  }
+
+  /* ---- experience ---- */
+  .exp-item { margin-bottom: 22px; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 3px;
+  }
+
+  .exp-role {
+    font-weight: 600;
+    font-size: 0.94rem;
+    color: var(--sand);
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--sand-dim);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-company {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    color: var(--sand-dim);
+    font-size: 0.87rem;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 5px;
+    line-height: 1.55;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+    top: 2px;
+  }
+
+  /* ---- project cards ---- */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent-border); }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--sand);
+  }
+
+  .project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .project-desc {
+    color: var(--sand-dim);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+  }
+
+  /* ---- sidebar ---- */
+  .skills-group { margin-bottom: 20px; }
+
+  .skills-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sand-dim);
+    margin-bottom: 8px;
+  }
+
+  .skill-pill-row { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .skill-pill {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--sand);
+    background: var(--surface);
+  }
+
+  .skill-pill.core {
+    border-color: var(--accent-border);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  /* ---- highlight box ---- */
+  .highlight-box {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+
+  .highlight-box .hl-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .highlight-box p {
+    font-size: 0.82rem;
+    color: var(--sand-dim);
+    line-height: 1.55;
+  }
+
+  /* ---- education ---- */
+  .edu-item {
+    font-size: 0.85rem;
+    color: var(--sand-dim);
+    line-height: 1.6;
+  }
+
+  .edu-item strong {
+    color: var(--sand);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  @media print {
+    body { background: white; color: #111; padding: 24px; }
+    .header, .project-card, .highlight-box { border-color: #ddd; }
+    .section-label::after { background: #ddd; }
+    :root {
+      --bg: white; --surface: #f8f8f8; --sand: #111; --sand-dim: #555;
+      --accent: #3a7a00; --accent-dim: #f0f7e6; --accent-border: #c5e0a0; --border: #e0e0e0;
+    }
+  }
+
+  /* ---- animations ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes lineGrow {
+    from { transform: scaleX(0); transform-origin: left; }
+    to { transform: scaleX(1); transform-origin: left; }
+  }
+  @keyframes pillPop {
+    from { opacity: 0; transform: scale(0.85) translateY(6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes cursorGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .header { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,.8,.24,1) 0.1s forwards; }
+  .body > div:first-child { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,.8,.24,1) 0.25s forwards; }
+  .body > div:last-child { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,.8,.24,1) 0.4s forwards; }
+  .section-label::after { animation: lineGrow 0.6s cubic-bezier(.16,.8,.24,1) 0.6s both; }
+  .reveal-item { opacity: 0; transform: translateY(16px); transition: opacity 0.6s cubic-bezier(.16,.8,.24,1), transform 0.6s cubic-bezier(.16,.8,.24,1); }
+  .reveal-item.visible { opacity: 1; transform: translateY(0); }
+  .skill-pill { opacity: 0; animation: pillPop 0.4s cubic-bezier(.16,.8,.24,1) both; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease; cursor: default; }
+  .skill-pill:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+  .project-card { transition: border-color 0.25s ease, transform 0.25s cubic-bezier(.16,.8,.24,1), box-shadow 0.25s ease; }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px -16px rgba(200,249,122,0.15); border-color: var(--accent-border); }
+  #cursor-glow { position: fixed; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(200,249,122,0.06) 0%, transparent 70%); pointer-events: none; transform: translate(-50%, -50%); transition: left 0.12s ease, top 0.12s ease; z-index: 0; animation: cursorGlow 3s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .header, .body > div { animation: none !important; opacity: 1 !important; }
+    .reveal-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .skill-pill { animation: none !important; opacity: 1 !important; }
+    #cursor-glow { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="title">Frontend / UI Developer</div>
+    <div class="name">Haniya Fahim</div>
+    <p class="tagline">Self-taught full-stack frontend developer with 4+ years building production-grade interfaces — custom booking systems, animated web apps, Firebase backends and pixel-perfect UI from scratch. No templates, ever.</p>
+  </div>
+  <div class="contact-block">
+    <div><a href="mailto:haniyafahim.dev@gmail.com">haniyafahim.dev@gmail.com</a></div>
+    <div>+92 333 3008913</div>
+    <div><a href="https://haniyafahim.web.app" target="_blank">haniyafahim.web.app</a></div>
+    <div><a href="https://github.com/haniyafahimdev" target="_blank">github.com/haniyafahimdev</a></div>
+    <div>Available Remotely</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- MAIN COLUMN -->
+  <div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-label">Experience</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Freelance Frontend Developer</div>
+          <div class="exp-date">2021 — Present</div>
+        </div>
+        <div class="exp-company">Independent · Remote · US & Pakistan clients</div>
+        <ul class="exp-bullets">
+          <li>Built full-stack restaurant management system for Coconut Grove (Karachi) — reservation engine, real-time admin panel, Firebase backend, Cloudinary image management and animated frontend with page loader and parallax effects</li>
+          <li>Developed custom booking websites for US-based nail salons across Austin TX, Houston TX and Phoenix AZ — slot management, automatic email confirmations via Resend, admin panels for service and gallery control</li>
+          <li>Built multipage business website for Advance Pristine Painting (Oklahoma City) — AI chatbot, contact forms, on-page SEO, XML sitemaps, Google Search Console setup and local SEO optimizations</li>
+          <li>Delivered all projects with zero-cost hosting on Vercel, Firebase Auth, and Cloudinary — clients own their domain and data entirely</li>
+          <li>Managed full project lifecycle: discovery, design, development, deployment and client handoff</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">UI & Content Creator</div>
+          <div class="exp-date">2022 — Present</div>
+        </div>
+        <div class="exp-company">@signorina.mafia · Personal Brand</div>
+        <ul class="exp-bullets">
+          <li>Designed and launched a creator brand from zero — content strategy, visual identity, reel production and copywriting</li>
+          <li>Applied UI/UX thinking to social content: tested formats, iterated on performance data, optimized for engagement</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-label">Selected Projects</div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Coconut Grove — Restaurant Web App</div>
+          <a class="project-link" href="https://coconutgrovepk.vercel.app" target="_blank">↗ live</a>
+        </div>
+        <p class="project-desc">Full restaurant management system with animated frontend, Firebase-backed reservation engine, real-time admin panel, gallery, reviews moderation, buffet management and landing popup — all brand-accurate to client colors and identity.</p>
+        <div class="tag-row">
+          <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Cloudinary</span><span class="tag">Vercel</span><span class="tag">SVG Animation</span><span class="tag">Resend</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Nail Salon Booking Sites (×3)</div>
+          <a class="project-link" href="https://haniyafahim.web.app" target="_blank">↗ portfolio</a>
+        </div>
+        <p class="project-desc">Three distinct custom booking websites for US nail techs — each with a unique visual identity (soft blush/floral, emerald/gold, dark glam rhinestone), slot-based booking system, email confirmations and full admin control panel.</p>
+        <div class="tag-row">
+          <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Resend</span><span class="tag">Vercel</span><span class="tag">Responsive Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Advance Pristine Painting</div>
+          <a class="project-link" href="https://advpristinepainting.com" target="_blank">↗ live</a>
+        </div>
+        <p class="project-desc">Multipage business site with AI-powered chatbot, instant estimate forms, shared CSS/JS architecture, full on-page SEO, XML sitemaps, robots.txt and Google Search Console integration.</p>
+        <div class="tag-row">
+          <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">SEO</span><span class="tag">AI Chatbot</span><span class="tag">Vercel</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div>
+
+    <div class="highlight-box">
+      <div class="hl-label">Web3 Context</div>
+      <p>Active participant in RollerCoin (blockchain mining simulation), familiar with Solana and LTC transactions, crypto wallet management and on-chain verification. Genuine interest in Ethereum and the UX challenges of making blockchain data readable for everyday users.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Skills</div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">Core</div>
+        <div class="skill-pill-row">
+          <span class="skill-pill core">HTML5</span>
+          <span class="skill-pill core">CSS3</span>
+          <span class="skill-pill core">JavaScript</span>
+          <span class="skill-pill core">Responsive Design</span>
+          <span class="skill-pill core">GitHub</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">Frameworks & Tools</div>
+        <div class="skill-pill-row">
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">TypeScript</span>
+          <span class="skill-pill">Firebase</span>
+          <span class="skill-pill">Vercel</span>
+          <span class="skill-pill">Cloudinary</span>
+          <span class="skill-pill">Resend</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">Design & UX</div>
+        <div class="skill-pill-row">
+          <span class="skill-pill">SVG Animation</span>
+          <span class="skill-pill">CSS Animation</span>
+          <span class="skill-pill">Intersection Observer</span>
+          <span class="skill-pill">Parallax</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Canva</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">Other</div>
+        <div class="skill-pill-row">
+          <span class="skill-pill">On-Page SEO</span>
+          <span class="skill-pill">Video Editing</span>
+          <span class="skill-pill">CapCut Pro</span>
+          <span class="skill-pill">Content Strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Education</div>
+      <div class="edu-item">
+        <strong>Self-Taught Developer</strong>
+        4+ years of project-based learning — every skill built through shipping real products for real clients across the US and Pakistan.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Links</div>
+      <div class="edu-item">
+        <strong>Portfolio</strong>
+        haniyafahim.web.app
+        <br><br>
+        <strong>GitHub</strong>
+        github.com/haniyafahimdev
+        <br><br>
+        <strong>Live Project</strong>
+        coconutgrovepk.vercel.app
+        <br><br>
+        <strong>Email</strong>
+        haniyafahim.dev@gmail.com
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="cursor-glow"></div>
+<script>
+  // cursor glow
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.exp-item, .project-card, .highlight-box').forEach((el, i) => {
+    el.classList.add('reveal-item');
+    el.style.transitionDelay = (i * 60) + 'ms';
+    observer.observe(el);
+  });
+
+  // stagger skill pills
+  document.querySelectorAll('.skill-pill').forEach((pill, i) => {
+    pill.style.animationDelay = (300 + i * 50) + 'ms';
+  });
+</script>
+</body>
+</html>
